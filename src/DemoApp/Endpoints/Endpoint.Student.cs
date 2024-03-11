@@ -12,6 +12,8 @@ public partial class Endpoint
             var group = app.MapGroup("/student");
 
             group.MapGet("", Students);
+            group.MapGet("/all", async (IStudentService studentService)
+                => await studentService.Students());
 
         }
 
