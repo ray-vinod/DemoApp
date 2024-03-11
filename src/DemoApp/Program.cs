@@ -1,7 +1,15 @@
+using MinimalApiEndpoints;
+using RegisterServices;
+
 var builder = WebApplication.CreateBuilder(args);
 {
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
+    var service = builder.Services;
+    var configuration = builder.Configuration;
+
+
+    service.AddEndpointsApiExplorer();
+
+    service.AddServices(configuration);
 }
 var app = builder.Build();
 {
@@ -9,6 +17,8 @@ var app = builder.Build();
     app.UseSwaggerUI();
 
     app.UseHttpsRedirection();
+
+    app.UseEndpoints();
 
     app.Run();
 }
